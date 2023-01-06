@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 const dotEnv = require('dotenv')
 const authRouter = require('./routes/auth')
 const schtroumpfRouter = require('./routes/users')
+var cookieParser = require('cookie-parser')
 
 // Get .env params
 dotEnv.config();
@@ -22,7 +23,9 @@ async function main(){
 }
 
 // Routes
-app.use(express.json());
+app.use(express.json()); // application/json 
+app.use(cookieParser()); // Cookie parser
+
 app.use('/api/v1', authRouter); // Auth route
 app.use('/api/v1/schtroumpfs', schtroumpfRouter); // Get all users route
 

@@ -45,17 +45,25 @@ router.post('/login', async(req, res) => {
 
         originalPassword != inputPassword && res.status(401).json("Mot de passe n'est pas correcte");
 
-        const { password, ...others } = user._doc
-
+        
         // Define access Token
         const accessToken = jwt.sign({
-                id: user._id,
-                role: user.role
-            },
-            process.env.JWT_SEC, { expiresIn: "1h" }
+            id: user._id,
+            role: user.role
+        },
+        process.env.JWT_SEC, { expiresIn: "1h" }
         );
+        
+        // Save token in database
+        user.token = accessToken;
+        user.save();
 
-        res.status(200).json({...others, accessToken });
+        const { password, token, ...others } = user._doc // Hide password & token from response
+
+        // Create new token cookie
+        res.cookie('auth',user.token).json({...others, accessToken });
+
+        // res.status(200).json({...others, accessToken });
                 
     } catch (error) {
         const status = error.status || 500;
@@ -63,6 +71,11 @@ router.post('/login', async(req, res) => {
     }
 })
 
+// Logout route
+router.post('/logout', async(req, res) => {
+    const authHeader = req.headers.authorization;
+    
+})
 
 
 module.exports = router;
