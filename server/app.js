@@ -1,13 +1,16 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose')
+const dotEnv = require('dotenv')
+
+dotEnv.config(0);
 
 mongoose.set('strictQuery', false);
 
 main().catch(err => console.log(err));
 
 async function main(){
-    await mongoose.connect('mongodb://localhost:27017/db_schtroumpfs')
+    await mongoose.connect(process.env.MONGO_URL)
             .then(() => console.log("DB Connection Successfull!"))
             .catch((err) => {
                 console.log(err);
