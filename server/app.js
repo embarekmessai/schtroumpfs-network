@@ -3,6 +3,7 @@ const app = express();
 const mongoose = require('mongoose')
 const dotEnv = require('dotenv')
 const authRouter = require('./routes/auth')
+const schtroumpfRouter = require('./routes/users')
 
 // Get .env params
 dotEnv.config();
@@ -23,6 +24,7 @@ async function main(){
 // Routes
 app.use(express.json());
 app.use('/api/v1', authRouter); // Auth route
+app.use('/api/v1/schtroumpfs', schtroumpfRouter); // Get all users route
 
 // Server initiation
 app.listen(process.env.PORT || 5000, () => {
