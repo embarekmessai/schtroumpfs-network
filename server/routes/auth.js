@@ -5,6 +5,8 @@ const jwt = require("jsonwebtoken");
 const express = require('express');
 const router = express.Router();
 
+const auth = require('./middlewares/auth')
+
 // Registration router
 router.post('/register', async(req, res) => {
     const newUser = new User({
@@ -72,9 +74,15 @@ router.post('/login', async(req, res) => {
 })
 
 // Logout route
-router.post('/logout', async(req, res) => {
-    const authHeader = req.headers.authorization;
+router.post('/logout', auth, async(req, res) => {
+    // const authHeader = req.headers.authorization;
+    res.clearCookie("auth").send('logout');
     
+    // await req.user.save();
+    
+    const user = await User.findById(req.user._id)
+    user.token = '1';
+    user.save();
 })
 
 
