@@ -4,7 +4,8 @@
   "description": "A small natwork for les schtoumpfs",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "watch": "nodemon app.js",
+    "start": "npm run production"
   },
   "keywords": [
     "schtroumpfs"
@@ -15,5 +16,8 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "mongoose": "^6.8.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
   }
 }
