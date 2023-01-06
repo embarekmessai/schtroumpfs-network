@@ -1,0 +1,14 @@
+{
+  "name": "schtroumpfs-network",
+  "version": "1.0.0",
+  "description": "A small natwork for les schtoumpfs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "schtroumpfs"
+  ],
+  "author": "MESSAI Embarek",
+  "license": "ISC"
+}
