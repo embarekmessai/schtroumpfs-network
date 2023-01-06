@@ -1,4 +1,4 @@
-const User = require("../models/Users");
+const User = require("../models/User");
 const CryptoJS = require("crypto-js");
 const jwt = require("jsonwebtoken");
 
@@ -58,10 +58,11 @@ router.post('/login', async(req, res) => {
         res.status(200).json({...others, accessToken });
                 
     } catch (error) {
-        const status = err.status || 500;
-        res.status(status).json(err);
+        const status = error.status || 500;
+        res.status(status).json(error);
     }
 })
+
 
 
 module.exports = router;
