@@ -1,46 +1,25 @@
-<section class="h-full">
-  <div class="absolute left-0 top-0 w-full bg-appGreen">
-    <div class="mt-0 pt-5 pb-0 mb-20 h-3/4 bg-appBlue">
-
-      <!-- main content  -->
-      <!-- Logo  -->
-      <div class="relative flex justify-center mt-20 mb-5 z-10">
-        <div class="flex flex-col">
-          <img src="../../assets/images/logo/Schtroumps.png" alt="schtroumps-logo">
-          <!-- login card  -->
-          <div class="relative bg-white shadow-lg rounded-lg mt-5 mx-2">
-            <div class="p-2 mt-5">
-              <h2 class="font-bold text-lg text-blueGray-700 text-center uppercase">S'identifer</h2>
-            </div>
-            <form>
-              <div class="flex flex-col p-2 mx-5 mt-3">
-                <label class="font-bold text-blueGray-700" for="username">Nom d'utilisateur</label>
-                <input type="text" id="username"
-                  class="rounded border boreder-1 p-2 mt-2 border-blueGray-300 focus:outline-none focus:border-sky-500 focus:shadow-sm focus:shadow-sky-300">
-              </div>
-              <div class="flex flex-col p-2 mx-5 mt-3">
-                <label class="font-bold text-blueGray-700" for="password">Mot de pass</label>
-                <input type="password" id="password"
-                  class="rounded border boreder-1 p-2 mt-2 border-blueGray-300 focus:outline-none focus:border-sky-500 focus:shadow-sm focus:shadow-sky-300">
-              </div>
-              <div class="flex justify-between m-5 p-2">
-                <a class="underline active:text-sky-700" routerLink="/register">Je n'ai pas de compte</a>
-                <button
-                  class="bg-blue-600 px-10 py-2 rounded text-white font-bold active:bg-blue-700 active:shadow active:shadow-blue-300"
-                  type="submit">Connexion</button>
-              </div>
-
-            </form>
-          </div>
-        </div>
-      </div>
-
-      <!-- Bottom Relief  -->
-      <svg width="1440" height="62" viewBox="0 0 1440 62" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="M1439.93 61.62H348.429H-3.57053C-5.40387 48.12 -7.97053 21.12 -3.57053 21.12C1.92947 21.12 15.4295 40.12 56.4295 21.12C97.4295 2.12002 157.429 4.62 181.929 40.12C206.429 75.62 362.429 21.12 413.929 4.62C465.429 -11.88 637.929 21.12 670.429 21.12C702.929 21.12 1109.93 40.12 1216.43 21.12C1301.63 5.92001 1400.93 14.7867 1439.93 21.12V61.62Z"
-          fill="#12B10F" />
-      </svg>
-    </div>
+<!-- login card  -->
+<div class="relative bg-white shadow-lg rounded-lg mt-5 mx-2">
+  <div class="p-2 mt-5">
+    <h2 class="font-bold text-lg text-blueGray-700 text-center uppercase">S'identifer</h2>
   </div>
-</section>
+  <form>
+    <div class="flex flex-col p-2 mx-5 mt-3">
+      <label class="font-bold text-blueGray-700" for="username">Nom d'utilisateur</label>
+      <input type="text" id="username"
+        class="rounded border boreder-1 p-2 mt-2 border-blueGray-300 focus:outline-none focus:border-sky-500 focus:shadow-sm focus:shadow-sky-300">
+    </div>
+    <div class="flex flex-col p-2 mx-5 mt-3">
+      <label class="font-bold text-blueGray-700" for="password">Mot de pass</label>
+      <input type="password" id="password"
+        class="rounded border boreder-1 p-2 mt-2 border-blueGray-300 focus:outline-none focus:border-sky-500 focus:shadow-sm focus:shadow-sky-300">
+    </div>
+    <div class="flex justify-between m-5 p-2">
+      <a class="underline active:text-sky-700" routerLink="/auth/register">Je n'ai pas de compte</a>
+      <button
+        class="bg-blue-600 px-10 py-2 rounded text-white font-bold active:bg-blue-700 active:shadow active:shadow-blue-300"
+        type="submit">Connexion</button>
+    </div>
+
+  </form>
+</div>
