@@ -1,8 +1,9 @@
 const Role = require("../models/Role");
+const auth = require("./middlewares/auth");
 const router = require("express").Router();
 
 // Get all roles
-router.get('/', async(req, res) => {
+router.get('/', auth, async(req, res) => {
     try {
         const roles = await Role.find();
         res.status(200).json(roles);
@@ -12,7 +13,7 @@ router.get('/', async(req, res) => {
 })
 
 // Add new role
-router.post('/roles', async(req, res)=>{
+router.post('/roles', auth, async(req, res)=>{
     try {
         const newRole = new Role({
             name: req.body.name

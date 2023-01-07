@@ -1,9 +1,10 @@
 const User = require("../models/User");
 const { route } = require("./auth");
+const auth = require("./middlewares/auth");
 const router = require("express").Router();
 
 //GET ALL USER
-router.get("/", async(req, res) => {
+router.get("/", auth, async(req, res) => {
     try {
         const users = await User.find();
         res.status(200).json(users);
@@ -13,13 +14,13 @@ router.get("/", async(req, res) => {
 });
 
 // Edit user role
-router.put("/role", async(req, res) =>{
+router.put("/role", auth, async(req, res) =>{
  try {
-    const user = User.findById(req.body.user_id);
+    const user = User.findById(req.user._id);
 
     const updateRole = user && await user.updateOne({role: req.body.role})
 
-    const { password, ...others } = updateRole._doc
+    const { password, token, ...others } = updateRole._doc
 
     res.status(201).json(others);
 
