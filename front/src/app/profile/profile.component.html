@@ -1,0 +1,72 @@
+<section class="fixed top-0 right-0 m-0 p-0 w-full h-full z-50"
+          [ngClass]="modalStatus ? 'hidden' : ''"
+
+>
+  <div class="w-full h-full bg-black/50" (click)="hideModal()"></div>
+  <div class="absolute top-0 inset-x-0 bg-white shadow-lg rounded-lg mt-20 mx-2 md:mx-60 p-5">
+    <!-- close modal x  -->
+    <div class="flex justify-between text-xl font-bold">
+      <h3 class="text-lg font-bold uppercase text-slate-600">Modifier le profil</h3>
+      <fa-icon class="cursor-pointer text-slate-500 active:text-gray-700"
+                [icon]="faTimes"
+                (click)="hideModal()"
+      >
+      </fa-icon>
+    </div>
+    <hr class="my-2 mx-0">
+    <form class="overflow-y-scroll scrollbar-thin h-96 scrollbar-thumb-gray-500 scrollbar-track-gray-100 scrollbar-thumb-rounded">
+        <div class="flex flex-col p-2 mx-5 mt-3">
+          <label class="font-bold uppercase text-slate-700" for="username">Nom d'utilisateur</label>
+          <input type="text" id="username"
+            class="rounded border boreder-1 p-2 mt-2 border-slate-300 focus:outline-none focus:border-sky-500 focus:shadow-sm focus:shadow-sky-300">
+        </div>
+        <div class="flex flex-col p-2 mx-5 mt-3">
+          <label class="font-bold uppercase text-slate-700" for="username">Role</label>
+          <select class="rounded border boreder-1 p-2 mt-2 border-slate-300 focus:outline-none focus:border-sky-500 focus:shadow-sm focus:shadow-sky-300"
+                  name="role"
+                  id="role"
+          >
+            <option value="1">Allo</option>
+            <option value="2">Ballon</option>
+            <option value="3">Baguette</option>
+          </select>
+        </div>
+        <div class="flex flex-col p-2 mx-5 mt-3">
+          <label class="font-bold uppercase text-slate-700" for="old_password">Ancien mot de pass</label>
+          <input type="old_password" id="old_password"
+            class="rounded border boreder-1 p-2 mt-2 border-slate-300 focus:outline-none focus:border-sky-500 focus:shadow-sm focus:shadow-sky-300">
+        </div>
+        <div class="flex flex-col p-2 mx-5 mt-3">
+          <label class="font-bold uppercase text-slate-700" for="password">Nouveau mot de pass</label>
+          <input type="password" id="password"
+            class="rounded border boreder-1 p-2 mt-2 border-slate-300 focus:outline-none focus:border-sky-500 focus:shadow-sm focus:shadow-sky-300">
+        </div>
+        <div class="flex flex-col p-2 mx-5 mt-3">
+          <label class="font-bold uppercase text-slate-700" for="password_conformation">Confirmer le mot de pass</label>
+          <input type="password" id="password_conformation"
+            class="rounded border boreder-1 p-2 mt-2 border-slate-300 focus:outline-none focus:border-sky-500 focus:shadow-sm focus:shadow-sky-300">
+        </div>
+        <div class="flex justify-between uppercase mx-16">
+        <div class="mt-5">
+          <button class="bg-slate-600 px-10 py-2 rounded text-white font-bold active:bg-slate-700 active:shadow active:shadow-slate-300"
+                  type="button"
+                  (click)="hideModal()"
+          >
+            Annuler
+          </button>
+        </div>
+        <div class="mt-5">
+          <button class="bg-red-600 px-10 py-2 rounded text-white font-bold active:bg-red-700 active:shadow active:shadow-red-300"
+                  type="submit"
+          >
+              Ajouter
+          </button>
+        </div>
+      </div>
+    </form>
+
+    <!-- title  -->
+
+  </div>
+
+</section>
