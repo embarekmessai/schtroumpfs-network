@@ -13,9 +13,11 @@
           <div class="hidden absolute top-20 right-10 w-52 bg-white rounded shadow divide-y"
                 [ngClass]="profileMenu ? 'md:grid md:grid-cols-1' : ''"
           >
-            <a href="#" class="uppercase text-md font-bold text-center text-blueGray-600 px-2 py-2 hover:bg-slate-200 rounded">
+            <button class="uppercase text-md font-bold text-center text-blueGray-600 px-2 py-2 hover:bg-slate-200 rounded"
+                    (click)="openModal()"
+            >
               Profil
-            </a>
+            </button>
             <a href="#" class="font-bold text-center uppercase text-md p-2 text-red-600 active:text-red-700 px-2 py-2 hover:bg-slate-200 rounded">
               <fa-icon [icon]="faPowerOff"></fa-icon> Déconnexion
             </a>
@@ -53,5 +55,6 @@
       </div>
     </div>
   </div>
+  <app-profile [modalStatus]="openModalStatus" (modalEvent)="initiatModalStatus()"></app-profile>
 </section>
 
