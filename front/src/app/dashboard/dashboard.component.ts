@@ -7,4 +7,14 @@ import { Component } from '@angular/core';
 })
 export class DashboardComponent {
 
+  openModalStatus: boolean = true;
+
+  openModal: any = () => {
+    this.openModalStatus = false
+  }
+
+  initiatModalStatus: any = () => {
+    this.openModalStatus = true;
+  }
+
 }

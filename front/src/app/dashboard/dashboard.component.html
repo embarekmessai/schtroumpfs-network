@@ -21,6 +21,12 @@
     </div>
   </div>
   <div class="flex justify-center mt-16">
-    <button class="uppercase bg-red-600 active:bg-red-700 text-white rounded shadow active:shadow-none font-bold px-8 py-2" type="button">Ajouter un nouvel ami</button>
+    <button class="uppercase bg-red-600 active:bg-red-700 text-white rounded shadow active:shadow-none font-bold px-8 py-2"
+            type="button"
+            (click)="openModal()"
+    >
+        Ajouter un nouvel ami
+    </button>
   </div>
+  <app-new-freind [modalStatus]="openModalStatus" (modalEvent)="initiatModalStatus()"></app-new-freind>
 </section>
