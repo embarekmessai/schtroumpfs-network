@@ -5,11 +5,21 @@
       <!-- main content  -->
       <!-- Logo  -->
       <div class="relative flex justify-center md:justify-between mb-5 z-10">
-        <div class="w-6/12 md:w-3/12 mx-5">
+        <a routerLink="/" class="w-6/12 md:w-3/12 mx-5">
           <img src="../../assets/images/logo/Schtroumps.png" alt="schtroumps-logo">
-        </div>
-        <div class="w-15 mx-5 hidden md:block">
+        </a>
+        <div class="w-15 mx-5 hidden md:block cursor-pointer" (click)="openProfileMenu()">
           <img class="rounded-full" src="../../../assets/images/avatar/avatar.jpg" alt="">
+          <div class="hidden absolute top-20 right-10 w-52 bg-white rounded shadow divide-y"
+                [ngClass]="profileMenu ? 'md:grid md:grid-cols-1' : ''"
+          >
+            <a href="#" class="uppercase text-md font-bold text-center text-blueGray-600 px-2 py-2 hover:bg-slate-200 rounded">
+              Profil
+            </a>
+            <a href="#" class="font-bold text-center uppercase text-md p-2 text-red-600 active:text-red-700 px-2 py-2 hover:bg-slate-200 rounded">
+              <fa-icon [icon]="faPowerOff"></fa-icon> Déconnexion
+            </a>
+          </div>
         </div>
       </div>
        <!-- navbar  -->
