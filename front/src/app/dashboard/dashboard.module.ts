@@ -5,12 +5,14 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
 import { NewFreindComponent } from './new-freind/new-freind.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { SmurfsComponent } from '../smurfs/smurfs.component';
 
 
 @NgModule({
   declarations: [
     DashboardComponent,
-    NewFreindComponent
+    NewFreindComponent,
+    SmurfsComponent,
   ],
   imports: [
     CommonModule,
