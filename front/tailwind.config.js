@@ -9,10 +9,15 @@ module.exports = {
   theme: {
     colors:{
       ...colors,
-      appGreen : '#12B10F',
+      appGreen : {
+        '100':'#12B10F',
+        '200':'#0C7D0A',
+      },
       appBlue : '#26C7FA'
     },
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    require('tailwind-scrollbar')({ nocompatible: true }),
+  ],
 }
