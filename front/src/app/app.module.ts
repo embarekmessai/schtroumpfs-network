@@ -7,12 +7,14 @@ import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component
 import { AuthModule } from './auth/auth.module';
 import { DashboardLayoutComponent } from './layouts/dashboard-layout/dashboard-layout.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthLayoutComponent,
     DashboardLayoutComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
