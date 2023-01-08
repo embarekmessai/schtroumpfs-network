@@ -15,4 +15,16 @@ export class DashboardLayoutComponent {
   openProfileMenu: any = () => {
     this.profileMenu = !this.profileMenu
   }
+
+  // Profile Modal
+  openModalStatus: boolean = true;
+
+  openModal: any = () => {
+    this.openModalStatus = false
+  }
+
+  initiatModalStatus: any = () => {
+    this.openModalStatus = true;
+  }
+
 }
