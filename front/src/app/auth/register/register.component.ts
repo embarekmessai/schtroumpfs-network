@@ -32,6 +32,8 @@ export class RegisterComponent {
         this.isSuccessful = true;
         this.isRegistredFailed = false;
 
+        // Save user in session
+        window.sessionStorage.setItem(this.authService.user_key, JSON.stringify(data));
       },
 
       err => {
