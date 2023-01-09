@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -11,7 +12,8 @@ export class RegisterComponent {
 
   constructor(
     private authService: AuthService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private router: Router
   ){ };
 
   registerForm = this.formBuilder.group({
@@ -34,6 +36,9 @@ export class RegisterComponent {
 
         // Save user in session
         window.sessionStorage.setItem(this.authService.user_key, JSON.stringify(data));
+
+        // redirect after connexion
+        this.router.navigate(['/dashboard'])
       },
 
       err => {

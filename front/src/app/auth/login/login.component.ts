@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private router: Router
   ){ };
 
   loginForm = this.formBuilder.group({
@@ -31,12 +33,14 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(this.loginForm.value).subscribe(
       data => {
-        console.log(data);
         this.isSuccessful = true;
         this.isLoggedFailed = false;
 
         // Save user in session
         window.sessionStorage.setItem(this.authService.user_key, JSON.stringify(data));
+
+        // redirect after connexion
+        this.router.navigate(['/dashboard'])
       },
 
       err => {
