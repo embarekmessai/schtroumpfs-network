@@ -33,7 +33,9 @@ router.post('/register', passwordConfirmation ,  async(req, res) => {
 
         const { password, createdAt, updatedAt, token, ...others } = savedUser._doc
 
-        res.cookie('auth', savedUser.token).json({...others, accessToken });
+        // Send response with data & access token
+        res.status(200).json({...others, accessToken });
+
     } catch (err) {
         const status = err.status || 500;
         res.status(status).json(err);
@@ -80,8 +82,8 @@ router.post('/login', async(req, res) => {
 
         const { password, token, createdAt, updatedAt, ...others } = user._doc // Hide password & token from response
 
-        // Create new token cookie
-        res.cookie('auth',user.token).json({...others, accessToken });
+        // Send response with data & access token
+        res.status(200).json({...others, accessToken });
 
         // res.status(200).json({...others, accessToken });
                 
@@ -93,12 +95,11 @@ router.post('/login', async(req, res) => {
 
 // Logout route
 router.post('/logout', auth, async(req, res) => {
-    // const authHeader = req.headers.authorization;
-    res.clearCookie("auth").send('logout');
+
+    res.status(200).json("Vous êtes déconnecté!");
     
-    // await req.user.save();
-    
-    const user = await User.findById(req.user._id)
+    // Change user token
+    const user = await User.findById(req.user.id)
     user.token = '1';
     user.save();
 })

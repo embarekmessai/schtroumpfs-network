@@ -1,22 +1,28 @@
 const jwt = require('jsonwebtoken');
-const User = require('../../models/User');
 
 const auth = async(req, res, next) => {
     try {
-        const token = req.cookies.auth; // Get auth cookie
-        // Get user id from token
-        const verifyUser = jwt.verify(token, process.env.JWT_SEC);
-        
-        // Get user
-        const user = await User.findById(verifyUser.id)
-        
-        req.token = token;
-        req.user = user;
+            // const token = req.cookies.auth; // Get auth cookie
+            const authHeader = req.headers.authorization; // Get auth
+            
+            if(authHeader) {
+                const token = authHeader.split(" ")[1];
+                jwt.verify(token, process.env.JWT_SEC, (err, user) => {
+                if(err){
+                    return res.status(403).json("Le Token n'est pas valide!");
+                }
+                // Get user id from token
+                req.token = token;
+                req.user = user;
+                next();
 
-        next();
-    } catch (error) {
-        res.status(500).send(error);
-    }
+                });
+            }
+
+        } catch (error) {
+            res.status(401).json("Vous n'êtes pas authentifier!");;
+        }
+       
 }
 
 // Password confirmation
