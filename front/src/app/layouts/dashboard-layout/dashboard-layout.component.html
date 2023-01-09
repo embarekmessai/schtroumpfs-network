@@ -18,9 +18,11 @@
             >
               Profil
             </button>
-            <a href="#" class="font-bold text-center uppercase text-md p-2 text-red-600 active:text-red-700 px-2 py-2 hover:bg-slate-200 rounded">
+            <button class="font-bold text-center uppercase text-md p-2 text-red-600 active:text-red-700 px-2 py-2 hover:bg-slate-200 rounded"
+                    (click)="logout()"
+            >
               <fa-icon [icon]="faPowerOff"></fa-icon> Déconnexion
-            </a>
+            </button>
           </div>
         </div>
       </div>

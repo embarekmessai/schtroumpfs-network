@@ -28,6 +28,14 @@ export class AuthService {
     return this.http.post(`${auth_api}/login`, data ,httpOptions);
   }
 
+  // Login method
+  logout(): Observable<any> {
+    const userSession: any = window.sessionStorage.getItem(this.user_key);
+    const user = JSON.parse(userSession);
+
+    return this.http.post(`${auth_api}/logout`, null, { headers: new HttpHeaders({'Authorization' : `Bearer ${user.accessToken}`})})
+  }
+
   // Check if user is authenticated
   isLoggedIn(): boolean {
     const userSession = window.sessionStorage.getItem(this.user_key);
