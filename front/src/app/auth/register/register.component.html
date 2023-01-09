@@ -3,20 +3,32 @@
   <div class="p-2 mt-5">
     <h2 class="font-bold text-lg text-blueGray-700 text-center uppercase">S'enregister</h2>
   </div>
-  <form>
+  <div *ngIf="errorMessage" class="flex flex-wrap justify-center items-center m-5 p-3 bg-red-200 border border-red-500 rounded">
+    <p class=" text-red-700 font-bold">{{ errorMessage }} </p>
+  </div>
+  <form
+      *ngIf="!isSuccessful"
+      [formGroup]="registerForm"
+      (ngSubmit)="onSubmit()"
+  >
     <div class="flex flex-col p-2 mx-5 mt-3">
       <label class="font-bold text-blueGray-700" for="username">Nom d'utilisateur</label>
-      <input type="text" id="username"
+      <input type="text" id="username" formControlName="username"
+        class="rounded border boreder-1 p-2 mt-2 border-blueGray-300 focus:outline-none focus:border-sky-500 focus:shadow-sm focus:shadow-sky-300">
+    </div>
+    <div class="flex flex-col p-2 mx-5 mt-3">
+      <label class="font-bold text-blueGray-700" for="fullname">Nom complet</label>
+      <input type="text" id="fullname" formControlName="fullname"
         class="rounded border boreder-1 p-2 mt-2 border-blueGray-300 focus:outline-none focus:border-sky-500 focus:shadow-sm focus:shadow-sky-300">
     </div>
     <div class="flex flex-col p-2 mx-5 mt-3">
       <label class="font-bold text-blueGray-700" for="password">Mot de pass</label>
-      <input type="password" id="password"
+      <input type="password" id="password" formControlName="password"
         class="rounded border boreder-1 p-2 mt-2 border-blueGray-300 focus:outline-none focus:border-sky-500 focus:shadow-sm focus:shadow-sky-300">
     </div>
     <div class="flex flex-col p-2 mx-5 mt-3">
       <label class="font-bold text-blueGray-700" for="password_conformation">Confirmer le mot de pass</label>
-      <input type="password" id="password_conformation"
+      <input type="password" id="password_conformation" formControlName="password_conformation"
         class="rounded border boreder-1 p-2 mt-2 border-blueGray-300 focus:outline-none focus:border-sky-500 focus:shadow-sm focus:shadow-sky-300">
     </div>
     <div class="flex justify-between m-5 p-2">
