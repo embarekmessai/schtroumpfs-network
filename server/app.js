@@ -5,6 +5,7 @@ const dotEnv = require('dotenv')
 const authRouter = require('./routes/auth')
 const schtroumpfRouter = require('./routes/users')
 var cookieParser = require('cookie-parser')
+const cors = require('cors')
 
 // Get .env params
 dotEnv.config();
@@ -25,6 +26,7 @@ async function main(){
 // Routes
 app.use(express.json()); // application/json 
 app.use(cookieParser()); // Cookie parser
+app.use(cors()); // Ad cors
 
 app.use('/api/v1', authRouter); // Auth route
 app.use('/api/v1/schtroumpfs', schtroumpfRouter); // Get all users route
