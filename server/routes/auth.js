@@ -5,10 +5,11 @@ const jwt = require("jsonwebtoken");
 const express = require('express');
 const router = express.Router();
 
-const auth = require('./middlewares/auth')
+const { auth } = require('./middlewares/auth')
+const { passwordConfirmation } = require('./middlewares/auth')
 
 // Registration router
-router.post('/register', async(req, res) => {
+router.post('/register', passwordConfirmation ,  async(req, res) => {
     const newUser = new User({
         username: req.body.username,
         fullname: req.body.fullname,
@@ -17,9 +18,22 @@ router.post('/register', async(req, res) => {
 
     try {
         const savedUser = await newUser.save();
-        const { password, ...others } = savedUser._doc
 
-        res.status(201).json(others);
+        // Define access Token
+        const accessToken = jwt.sign({
+            id: savedUser._id,
+            role: savedUser.role
+        },
+        process.env.JWT_SEC, { expiresIn: "1h" }
+        );
+        
+        // Save token in database
+        savedUser.token = accessToken;
+        savedUser.save();
+
+        const { password, token, ...others } = savedUser._doc
+
+        res.cookie('auth', savedUser.token).json({...others, accessToken });
     } catch (err) {
         const status = err.status || 500;
         res.status(status).json(err);
