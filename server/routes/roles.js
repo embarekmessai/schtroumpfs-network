@@ -1,5 +1,5 @@
 const Role = require("../models/Role");
-const auth = require("./middlewares/auth");
+const { auth } = require("./middlewares/auth");
 const router = require("express").Router();
 
 // Get all roles

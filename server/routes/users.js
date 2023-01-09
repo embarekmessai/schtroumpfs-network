@@ -1,6 +1,6 @@
 const User = require("../models/User");
 const { route } = require("./auth");
-const auth = require("./middlewares/auth");
+const { auth } = require("./middlewares/auth");
 const router = require("express").Router();
 
 //GET ALL USER
