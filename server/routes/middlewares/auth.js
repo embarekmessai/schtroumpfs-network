@@ -19,6 +19,7 @@ const auth = async(req, res, next) => {
     }
 }
 
+// Password confirmation
 const passwordConfirmation = async(req, res, next) => {
     if(req.body.password == req.body.password_conformation){
         next()

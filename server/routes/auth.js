@@ -31,7 +31,7 @@ router.post('/register', passwordConfirmation ,  async(req, res) => {
         savedUser.token = accessToken;
         savedUser.save();
 
-        const { password, token, ...others } = savedUser._doc
+        const { password, createdAt, updatedAt, token, ...others } = savedUser._doc
 
         res.cookie('auth', savedUser.token).json({...others, accessToken });
     } catch (err) {
@@ -46,7 +46,9 @@ router.post('/login', async(req, res) => {
         const user = req.body.username ? await User.findOne({username: req.body.username}).select('+password'): null;
 
         // IF Credentials wrongs
-        !user && res.status(401).json("Votre nom d'utlisateur n'est pas enregitré");
+        if(!user){
+            return res.status(403).json("Votre nom d'utlisateur n'est pas enregitré");
+        } 
 
         // Get Hashed Passowrd
         const hashedPassword = CryptoJS.AES.decrypt(
@@ -59,8 +61,10 @@ router.post('/login', async(req, res) => {
         // Get input password
         const inputPassword = req.body.password;
 
-        originalPassword != inputPassword && res.status(401).json("Mot de passe n'est pas correcte");
-
+         
+        if(originalPassword != inputPassword) {
+            return res.status(403).json("Mot de passe n'est pas correcte");
+        }
         
         // Define access Token
         const accessToken = jwt.sign({
@@ -74,7 +78,7 @@ router.post('/login', async(req, res) => {
         user.token = accessToken;
         user.save();
 
-        const { password, token, ...others } = user._doc // Hide password & token from response
+        const { password, token, createdAt, updatedAt, ...others } = user._doc // Hide password & token from response
 
         // Create new token cookie
         res.cookie('auth',user.token).json({...others, accessToken });
