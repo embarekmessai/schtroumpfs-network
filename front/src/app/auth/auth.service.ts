@@ -8,7 +8,6 @@ const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
-const user_key = 'auth-user';
 
 @Injectable({
   providedIn: 'root'
@@ -17,15 +16,23 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
+  user_key = 'auth-user';
+
   // Registration method
   register(data : any): Observable<any> {
     return this.http.post(`${auth_api}/register`, data ,httpOptions);
   }
 
+  // Login method
+  login(data : any): Observable<any> {
+    return this.http.post(`${auth_api}/login`, data ,httpOptions);
+  }
+
   // Check if user is authenticated
   isLoggedIn(): boolean {
-    const user = window.sessionStorage.getItem(user_key);
-    if (user) {
+    const userSession = window.sessionStorage.getItem(this.user_key);
+    if (userSession) {
+      // const user = JSON.parse(userSession);
       return true;
     }
 
