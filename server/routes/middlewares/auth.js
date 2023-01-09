@@ -19,4 +19,12 @@ const auth = async(req, res, next) => {
     }
 }
 
-module.exports = auth;
+const passwordConfirmation = async(req, res, next) => {
+    if(req.body.password == req.body.password_conformation){
+        next()
+    }else {
+        res.status(403).json('Le mot de passe ne correspond pas à sa confirmation');
+    }
+}
+
+module.exports = {auth, passwordConfirmation};
