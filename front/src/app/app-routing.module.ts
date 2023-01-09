@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, CanActivate } from '@angular/router';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { DashboardLayoutComponent } from './layouts/dashboard-layout/dashboard-layout.component';
+import { GuestGuard } from './guards/guest.guard';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   // Auth routes
@@ -16,7 +18,8 @@ const routes: Routes = [
       },
       {
         path: 'auth',
-        loadChildren: () => import('./auth/auth.module').then(module => module.AuthModule)
+        loadChildren: () => import('./auth/auth.module').then(module => module.AuthModule),
+        canActivate: [GuestGuard]
       }
     ]
   },
@@ -33,7 +36,8 @@ const routes: Routes = [
       },
       {
         path: 'dashboard',
-        loadChildren: () => import('./dashboard/dashboard.module').then(module => module.DashboardModule)
+        loadChildren: () => import('./dashboard/dashboard.module').then(module => module.DashboardModule),
+        canActivate: [AuthGuard]
       },
     ]
   }
