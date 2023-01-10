@@ -90,7 +90,11 @@ router.put('/:id', auth, async(req, res) =>{
         username: user_name,
         fullname: req.body.fullname,
         password: req.body.password ? CryptoJS.AES.encrypt(req.body.password, process.env.PASS_SEC).toString() : user_password,
-        role: req.body.role,
+        role: {
+            name: req.body.role,
+            image: req.body.image,
+            avatar: req.body.avatar,
+        },
     };
 
 
