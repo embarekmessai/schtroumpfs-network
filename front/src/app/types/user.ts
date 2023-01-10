@@ -12,7 +12,11 @@ export type UserProfile = {
   user: {
     username ?: string | null,
     fullname ?: string | null,
-    role ?: string | null,
     password ?: string | null,
+    role ?: {
+      name ?: string | null,
+      image ?: string | null,
+      avatar ?: string | null,
+    },
   },
 };
