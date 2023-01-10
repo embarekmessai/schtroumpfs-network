@@ -6,10 +6,10 @@ const userSchema = new mongoose.Schema({
     password: { type: String, required: true, select: false },
     role: {type: Object},
     token: {type: String},
-    freinds:{
+    freinds:[{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
-    }
+    }]
 }, { timestamps: true })
 
 module.exports = mongoose.model("User", userSchema);
