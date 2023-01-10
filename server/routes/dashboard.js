@@ -11,16 +11,14 @@ router.get('/:id', auth, async(req, res) => {
     // Get count of all smurfs
     const schtroumps = await User.count();
 
-    const user = await User.findById(id);
+    const user = await User.findById(id).populate({
+                            path: 'freinds', 
+                            transform: freind => freind.id
+                        });
+    
+    const amisCount = user.freinds.length;
 
-    const amis = 0;
-
-    if(user.freinds){
-        amis = Object.keys(user.freinds).length;
-    } 
-
-
-    return res.status(200).json({schtroumps: schtroumps, amis: amis})
+    return res.status(200).json({schtroumps: schtroumps, amis: amisCount})
 })
 
 module.exports = router;
