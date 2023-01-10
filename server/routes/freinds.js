@@ -4,17 +4,32 @@ const { auth } = require("./middlewares/auth");
 const router = require("express").Router();
 
 // Add new freind
-router.post('/freinds', auth, async(req, res) => {
+router.post('/', auth, async(req, res) => {
     
     // get user id
     const id = req.body.id;
+
+    // Get user freind id from request
+    const resFreindId = req.body.freindId;
     
-    const freind = {
-        freinds : req.body.freindId,
-    };
+    // Get user with freind
+    const user = await User.find({ _id : id }).populate({
+        path: 'freinds',
+        transform: freind => freind.id == resFreindId ? freind.id : null
+    }); 
+    
+    // Filter freinds array to delete nulled values
+    const filtredFreindId = user[0].freinds.filter(freind => freind !== null);
+    
+    // const freindId = user[0].freinds._id.valueOf(); // Get user freind id from database
+    if(filtredFreindId.length > 0) {
+        return res.status(401).json({message : "Vous êtes déjà ami avec ce Schtroumpf"})
+    }
+
+    const freind = { freinds : req.body.freindId }; // Set body freindId to variable
 
     // Update user with new frend id
-    User.findByIdAndUpdate(id, freind, (err, user) => {
+    User.findByIdAndUpdate(id, { $push: freind }, (err, user) => {
         if (err) {
             return res.status(500).send(err);
         };
@@ -28,6 +43,25 @@ router.post('/freinds', auth, async(req, res) => {
         return res.status(201).json({message : "Ami ajouté avec succès!"});
     }); 
 
+
+})
+
+// Get all user freinds
+router.get('/:id', auth, async(req, res) => {
+    
+    // Get user Id
+    const id = req.params.id;
+
+    const user = await User.findById(id).populate('freinds');
+
+    console.log(user);
+
+    if (!user) {
+        // The user was not found
+        return res.status(401).json({ message: "Cette ultilisateur n'existe pas" });
+    };
+
+    return res.status(201).json({freinds: user.freinds});
 
 })
 
