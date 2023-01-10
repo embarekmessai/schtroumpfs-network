@@ -51,6 +51,12 @@ router.post('/login', async(req, res) => {
         if(!user){
             return res.status(403).json("Votre nom d'utlisateur n'est pas enregitré");
         } 
+        
+        // Avoid null password
+        if(!req.body.password){
+            return res.status(403).json("Vous devez saisir un mot de passe");
+
+        }
 
         // Get Hashed Passowrd
         const hashedPassword = CryptoJS.AES.decrypt(
