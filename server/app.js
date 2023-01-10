@@ -5,6 +5,8 @@ const dotEnv = require('dotenv')
 const authRouter = require('./routes/auth')
 const schtroumpfRouter = require('./routes/users')
 const profileRouter = require('./routes/profile')
+const dashboardRouter = require('./routes/dashboard')
+
 var cookieParser = require('cookie-parser')
 const cors = require('cors')
 
@@ -32,7 +34,8 @@ app.use(cors()); // Ad cors
 app.use('/api/v1', authRouter); // Auth route
 app.use('/api/v1/schtroumpfs', schtroumpfRouter); // Get all users route
 
-app.use('/api/v1/profile', profileRouter); // Get all user profile with role
+app.use('/api/v1/profile', profileRouter); // Profile routes
+app.use('/api/v1/dashboard', dashboardRouter); // Profile routes
 
 // Server initiation
 app.listen(process.env.PORT || 5000, () => {
