@@ -8,8 +8,8 @@
         <a routerLink="/" class="w-6/12 md:w-3/12 mx-5">
           <img src="../../assets/images/logo/Schtroumps.png" alt="schtroumps-logo">
         </a>
-        <div class="w-15 mx-5 hidden md:block cursor-pointer" (click)="openProfileMenu()">
-          <img class="rounded-full" src="../../../assets/images/avatar/avatar.jpg" alt="">
+        <div class="w-20 mx-5 hidden md:block cursor-pointer" (click)="openProfileMenu()">
+          <img class="rounded-full" [src]=" avatar ?? '../../../assets/images/avatar/avatar.jpg'" alt="">
           <div class="hidden absolute top-20 right-10 w-52 bg-white rounded shadow divide-y"
                 [ngClass]="profileMenu ? 'md:grid md:grid-cols-1' : ''"
           >
