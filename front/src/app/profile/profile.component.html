@@ -24,30 +24,42 @@
           [formGroup]="profileForm"
           (ngSubmit)="onSubmit()"
     >
-        <!-- User name  -->
-        <div class="flex flex-col p-2 mx-5 mt-3">
-          <label class="font-bold uppercase text-slate-700" for="username">Nom d'utilisateur</label>
-          <input type="text" id="username" formControlName="username"
-            class="rounded border boreder-1 p-2 mt-2 border-slate-300 focus:outline-none focus:border-sky-500 focus:shadow-sm focus:shadow-sky-300">
+      <div class="grid grid-cols-2 gap-2 mx-5 p-2">
+        <div>
+          <!-- User name  -->
+          <div class="flex flex-col mt-3">
+            <label class="font-bold uppercase text-slate-700" for="username">Nom d'utilisateur</label>
+            <input type="text" id="username" formControlName="username"
+              class="rounded border boreder-1 p-2 mt-2 border-slate-300 focus:outline-none focus:border-sky-500 focus:shadow-sm focus:shadow-sky-300">
+          </div>
+          <!-- Full Name  -->
+          <div class="flex flex-col mt-3">
+            <label class="font-bold uppercase text-slate-700" for="fullname">Nom complet</label>
+            <input type="text" id="fullname" formControlName="fullname"
+              class="rounded border boreder-1 p-2 mt-2 border-slate-300 focus:outline-none focus:border-sky-500 focus:shadow-sm focus:shadow-sky-300">
+          </div>
+
+            <!-- Role  -->
+            <div class="flex flex-col mt-3">
+              <label class="font-bold uppercase text-slate-700" for="username">Role</label>
+              <select class="rounded border boreder-1 p-2 mt-2 border-slate-300 focus:outline-none focus:border-sky-500 focus:shadow-sm focus:shadow-sky-300"
+                      name="role"
+                      id="role"
+                      formControlName="role"
+                      (change)="changeImage($event)"
+              >
+                <option *ngFor="let role of profileRoles" [value]="role.name">{{ role.name }}</option>
+              </select>
+            </div>
         </div>
-        <!-- Full Name  -->
-        <div class="flex flex-col p-2 mx-5 mt-3">
-          <label class="font-bold uppercase text-slate-700" for="fullname">Nom complet</label>
-          <input type="text" id="fullname" formControlName="fullname"
-            class="rounded border boreder-1 p-2 mt-2 border-slate-300 focus:outline-none focus:border-sky-500 focus:shadow-sm focus:shadow-sky-300">
+          <div class="w-4/6 justify-self-center">
+            <img [src]="profileImage" alt="">
+          </div>
         </div>
 
-        <!-- Role  -->
-        <div class="flex flex-col p-2 mx-5 mt-3">
-          <label class="font-bold uppercase text-slate-700" for="username">Role</label>
-          <select class="rounded border boreder-1 p-2 mt-2 border-slate-300 focus:outline-none focus:border-sky-500 focus:shadow-sm focus:shadow-sky-300"
-                  name="role"
-                  id="role"
-                  formControlName="role"
-          >
-            <option *ngFor="let role of profileRoles" [value]="role.name">{{ role.name }}</option>
-          </select>
-        </div>
+        <!-- Image & avatar forms  -->
+        <input type="hidden" formControlName="image">
+        <input type="hidden" formControlName="avatar">
 
         <!-- Old password  -->
         <div class="flex flex-col p-2 mx-5 mt-3">
