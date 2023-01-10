@@ -6,6 +6,7 @@ import { DashboardComponent } from './dashboard.component';
 import { NewFreindComponent } from './new-freind/new-freind.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SmurfsComponent } from '../smurfs/smurfs.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { SmurfsComponent } from '../smurfs/smurfs.component';
   imports: [
     CommonModule,
     DashboardRoutingModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    ReactiveFormsModule
   ]
 })
 export class DashboardModule { }

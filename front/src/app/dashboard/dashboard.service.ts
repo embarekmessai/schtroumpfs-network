@@ -21,10 +21,24 @@ export class DashboardService {
   userSession: any = window.sessionStorage.getItem(this.authService.user_key);
   user = JSON.parse(this.userSession);
 
-  // Set an authorization header
-
+  // Get schtroumpsf count
   smutfsCount() {
+    // Set an authorization header
     httpOptions.headers = httpOptions.headers.set('Authorization', `Bearer ${this.user.accessToken}`);
     return this.http.get(`${this.authService.auth_api}/dashboard/${this.user._id}`, httpOptions);
+  }
+
+  // Add new smurf freind
+  addFreind (data: object){
+    // Set an authorization header
+    httpOptions.headers = httpOptions.headers.set('Authorization', `Bearer ${this.user.accessToken}`);
+    return this.http.post(`${this.authService.auth_api}/freinds`, data, httpOptions)
+  }
+
+  // Get all smurfs from server
+  allSmutfs() {
+    // Set an authorization header
+    httpOptions.headers = httpOptions.headers.set('Authorization', `Bearer ${this.user.accessToken}`);
+    return this.http.get(`${this.authService.auth_api}/schtroumpfs`, httpOptions);
   }
 }
