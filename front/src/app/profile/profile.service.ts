@@ -20,10 +20,16 @@ export class ProfileService {
     private authService: AuthService,
   ) { }
 
-  getProfile() : Observable<UserProfile>{
-    const userSession: any = window.sessionStorage.getItem(this.authService.user_key);
-    const user = JSON.parse(userSession);
+  userSession: any = window.sessionStorage.getItem(this.authService.user_key);
+  user = JSON.parse(this.userSession);
 
-    return this.http.get<UserProfile>(`${auth_api}/profile/${user._id}`, { headers: new HttpHeaders({'Authorization' : `Bearer ${user.accessToken}`})})
+  getProfile() : Observable<UserProfile>{
+    httpOptions.headers = httpOptions.headers.set('Authorization', `Bearer ${this.user.accessToken}`);
+    return this.http.get<UserProfile>(`${auth_api}/profile/${this.user._id}`, { headers: new HttpHeaders({'Authorization' : `Bearer ${this.user.accessToken}`})})
+  }
+
+  profileUpdate(data: any){
+    httpOptions.headers = httpOptions.headers.set('Authorization', `Bearer ${this.user.accessToken}`);
+    return this.http.put(`${auth_api}/profile/${this.user._id}`, data, httpOptions )
   }
 }

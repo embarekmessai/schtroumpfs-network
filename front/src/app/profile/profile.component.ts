@@ -24,13 +24,14 @@ export class ProfileComponent implements OnInit {
     console.log('profile init');
 
 
+    // Get profile datas
     this.profileService.getProfile().subscribe(
       res => {
         console.log(res);
         // Get profile information
         this.profileRoles = res?.roles;
 
-        // Get profile datas
+        // Push profile datas to form
         this.profileForm.patchValue({
           username : res?.user.username,
           fullname : res?.user.fullname,
@@ -48,8 +49,29 @@ export class ProfileComponent implements OnInit {
     );
   }
 
+  // Update profile datas
+  onSubmit() {
+    this.profileService.profileUpdate(this.profileForm.value).subscribe(
+      res => {
+        console.log(res);
+        this.hideModal();
+        this.profileForm.patchValue({
+          old_password : '',
+          password : '',
+          password_conformation: '',
+        })
+      },
+      err => {
+        console.log(err.error);
+        this.errorMessage = err.error.message
+      }
+    )
+
+  }
+
   // variables
-  profileRoles : any = {};
+  profileRoles : any = [];
+  errorMessage : string | null = null;
 
   // hideCondition: boolean = false;
   faTimes = faTimes// close icon

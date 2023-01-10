@@ -14,8 +14,15 @@
       </fa-icon>
     </div>
     <hr class="my-2 mx-0">
+
+    <!-- Error alert -->
+    <div *ngIf="errorMessage" class="flex flex-wrap justify-center items-center m-5 p-3 bg-red-200 border border-red-500 rounded">
+      <p class=" text-red-700 font-bold">{{ errorMessage }} </p>
+    </div>
+
     <form class="overflow-y-scroll scrollbar-thin h-96 scrollbar-thumb-gray-500 scrollbar-track-gray-100 scrollbar-thumb-rounded"
           [formGroup]="profileForm"
+          (ngSubmit)="onSubmit()"
     >
         <!-- User name  -->
         <div class="flex flex-col p-2 mx-5 mt-3">
@@ -25,7 +32,7 @@
         </div>
         <!-- Full Name  -->
         <div class="flex flex-col p-2 mx-5 mt-3">
-          <label class="font-bold uppercase text-slate-700" for="fullname">Nom d'utilisateur</label>
+          <label class="font-bold uppercase text-slate-700" for="fullname">Nom complet</label>
           <input type="text" id="fullname" formControlName="fullname"
             class="rounded border boreder-1 p-2 mt-2 border-slate-300 focus:outline-none focus:border-sky-500 focus:shadow-sm focus:shadow-sky-300">
         </div>
@@ -38,13 +45,13 @@
                   id="role"
                   formControlName="role"
           >
-            <option *ngFor="let role of profileRoles; index as i" (value)="role.name">{{ role.name }}</option>
+            <option *ngFor="let role of profileRoles" [value]="role.name">{{ role.name }}</option>
           </select>
         </div>
 
         <!-- Old password  -->
         <div class="flex flex-col p-2 mx-5 mt-3">
-          <label class="font-bold uppercase text-slate-700" for="old_password">Ancien mot de pass</label>
+          <label class="font-bold uppercase text-slate-700" for="old_password">Ancient mot de pass</label>
           <input type="password" id="old_password"  formControlName="old_password"
             class="rounded border boreder-1 p-2 mt-2 border-slate-300 focus:outline-none focus:border-sky-500 focus:shadow-sm focus:shadow-sky-300">
         </div>
@@ -75,7 +82,7 @@
           <button class="bg-red-600 px-10 py-2 rounded text-white font-bold active:bg-red-700 active:shadow active:shadow-red-300"
                   type="submit"
           >
-              Ajouter
+              Modifier
           </button>
         </div>
       </div>
