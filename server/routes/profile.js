@@ -32,30 +32,33 @@ router.put('/:id', auth, async(req, res) =>{
 
     const id = req.params.id;
 
-    const user = await User.findById(id, 'password').exec();
+    const user = await User.findById(id, 'username password').exec();
     
     if(!user) {
         return res.status(400).json({ message: "Ultilisateur n'existe pas" });
     };
 
 
+    const user_name = req.body.username;
     // Check unique username
-    if(req.body.username) {
-        const user_name = req.body.username;
+    if(user_name) {
 
-        const found_user = await User.findOne({ username : user_name })
+        // Skipping user username
+        if(user.username !== user_name){
+            const found_user = await User.findOne({ username : user_name })
 
-        if(found_user) {
-            return res.status(400).json({message: "Le nome d'utilisateur est déjà utilisé!"});
+            if(found_user) {
+                return res.status(400).json({message: "Le nome d'utilisateur est déjà utilisé!"});
+            }
         }
 
     }
 
+    const user_password = user.password;
+
     // Changing old password
     if(req.body.password){
        
-        const user_password = user.password;
-        
         // Get Hashed Passowrd
         const hashedPassword = CryptoJS.AES.decrypt(
             user_password,
@@ -72,8 +75,8 @@ router.put('/:id', auth, async(req, res) =>{
             }
             
             // Check confiramation password matching 
-            if(req.body.password !== req.body.password_conformation){
-                res.status(403).json({message : 'Le mot de passe ne correspond pas à sa confirmation'});
+            if(req.body.password != req.body.password_conformation){
+                return res.status(401).json({message : 'Le mot de passe ne correspond pas à sa confirmation'});
             }
             
         } else {
@@ -83,7 +86,13 @@ router.put('/:id', auth, async(req, res) =>{
     }
 
     // Get all body datas    
-    const updatedDatas = req.body;
+    const updatedDatas = {
+        username: user_name,
+        fullname: req.body.fullname,
+        password: req.body.password ? CryptoJS.AES.encrypt(req.body.password, process.env.PASS_SEC).toString() : user_password,
+        role: req.body.role,
+    };
+
 
     // Update profile using findByIdAndUpdate method
     User.findByIdAndUpdate(id, updatedDatas, (err, user) => {
@@ -95,9 +104,11 @@ router.put('/:id', auth, async(req, res) =>{
             // The user was not found
             return res.status(401).json({ message: "Ultilisateur n'existe pas" });
         }
+
+        const { password, createdAt, updatedAt, token, ...others } = user._doc
     
         // Return the updated user data to the client
-        return res.status(302).json({user, message : "Porfile mise à jour avec succès!"});
+        return res.status(201).json({...others, message : "Porfile mise à jour avec succès!"});
     });
 });
 
