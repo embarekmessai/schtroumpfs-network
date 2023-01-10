@@ -9,7 +9,7 @@ router.get('/:id', auth, async(req, res) => {
     const id = req.params.id;
 
     // Get count of all smurfs
-    const schtroumps = await User.count();
+    const schtroumpfs = await User.count();
 
     const user = await User.findById(id).populate({
                             path: 'freinds', 
@@ -18,7 +18,7 @@ router.get('/:id', auth, async(req, res) => {
     
     const amisCount = user.freinds.length;
 
-    return res.status(200).json({schtroumps: schtroumps, amis: amisCount})
+    return res.status(200).json({schtroumpfs: schtroumpfs, amis: amisCount})
 })
 
 module.exports = router;
