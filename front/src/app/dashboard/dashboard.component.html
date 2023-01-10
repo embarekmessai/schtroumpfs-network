@@ -6,8 +6,10 @@
         <img src="../../assets/images/smurfs.jpg" alt="">
       </div>
       <div class="m-2 text-end">
-        <h3 class="text-blueGray-600 font-bold text-2xl uppercase">Schtroumps</h3>
-        <h3 class="text-blueGray-600 font-bold text-4xl uppercase">24</h3>
+        <h3 class="text-blueGray-600 font-bold text-2xl uppercase">
+          {{ schtroumpfs > 1 ? 'Schtroumps' : 'Schtroump' }}
+        </h3>
+        <h3 class="text-blueGray-600 font-bold text-4xl uppercase">{{ schtroumpfs }}</h3>
       </div>
     </div>
     <div class="flex justify-between bg-white rounded shadow py-2 px-5 w-full">
@@ -15,8 +17,10 @@
         <img src="../../assets/images/amismurf.jpg" alt="">
       </div>
       <div class="m-2 text-end">
-        <h3 class="text-blueGray-600 font-bold text-2xl uppercase">Amis</h3>
-        <h3 class="text-blueGray-600 font-bold text-4xl uppercase">5</h3>
+        <h3 class="text-blueGray-600 font-bold text-2xl uppercase">
+          {{ freinds_schtroumpfs > 1 ? 'Amis' : 'Ami' }}
+        </h3>
+        <h3 class="text-blueGray-600 font-bold text-4xl uppercase">{{ freinds_schtroumpfs }}</h3>
       </div>
     </div>
   </div>
