@@ -24,12 +24,12 @@ npm start
 
 ### Frontend
 
-1.Accédez au répertoire frontend : cd schtroumpfs-network/front
-2.Installez les dépendances : 
+1. Accédez au répertoire frontend : cd schtroumpfs-network/front.
+2. Installez les dépendances : 
 ```
 npm install
 ```
-3.Exécutez l'application : 
+3. Exécutez l'application : 
 ```
 npm start
 ```
