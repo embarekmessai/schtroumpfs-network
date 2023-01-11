@@ -66,7 +66,7 @@ router.get('/:id', auth, async (req, res) => {
 })
 
 // Delete freind from list
-router.delete('/:id', auth, async (req, res) => {
+router.post('/:id', auth, async (req, res) => {
     const id = req.params.id;
     const freindId = req.body.freindId;
 
