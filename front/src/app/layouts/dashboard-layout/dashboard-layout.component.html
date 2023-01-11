@@ -30,13 +30,16 @@
        <div class="md:flex flex-wrap justify-center mt-5 p-2 hidden">
         <ul class="uppercase text-blueGray-600 font-bold text-xl">
           <li class="inline-block mx-10 hover:text-red-700">
-            <a routerLink="/dashboard">Accueil</a>
+            <a routerLink="/dashboard" routerLinkActive="text-red-700 hover:text-blueGray-600"
+                [routerLinkActiveOptions]="{exact: true}">
+                Accueil
+            </a>
           </li>
           <li class="inline-block mx-10 hover:text-red-700">
-            <a routerLink="/dashboard/smurfs">Amis</a>
+            <a routerLink="/dashboard/freinds" routerLinkActive="text-red-700 hover:text-blueGray-600">Amis</a>
           </li>
           <li class="inline-block mx-10 hover:text-red-700">
-            <a routerLink="/dashboard/smurfs">Schtroumps</a>
+            <a routerLink="/dashboard/smurfs" routerLinkActive="text-red-700 hover:text-blueGray-600">Schtroumps</a>
           </li>
         </ul>
        </div>
