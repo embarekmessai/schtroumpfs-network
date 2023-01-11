@@ -33,7 +33,8 @@ npm install
 ```
 npm start
 ```
-4.Le frontend devrait maintenant être disponible à l'adresse http://localhost:4200 et le backend à http://localhost:5000
+
+Le frontend devrait maintenant être disponible à l'adresse http://localhost:4200 et le backend à http://localhost:5000
 
 #### Note
 Assurez-vous de configurer l'URL de votre base de données MongoDB dans le fichier .env de la partie backend.
