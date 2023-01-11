@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { SmurfsService } from './smurfs.service';
 import { AuthService } from '../auth/auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-smurfs',
@@ -71,8 +72,16 @@ export class SmurfsComponent implements OnInit {
   addFreind(freindId : any) {
     const data = {id: this.user._id, freindId: freindId}
     return this.smurfsService.addFreind(data).subscribe(
-      res => {
-        window.location.reload()
+      (res: any) => {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: res.message,
+          showConfirmButton: false,
+          timer: 1500
+        }).then(() => {
+          window.location.reload()
+        })
 
       },
       err => {
@@ -87,9 +96,16 @@ export class SmurfsComponent implements OnInit {
   deleteFreind(freindId : any) {
     const data = {freindId: freindId}
     return this.smurfsService.deleteFreind(data).subscribe(
-      res => {
-        window.location.reload()
-        console.log(res);
+      (res: any) => {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: res.message,
+          showConfirmButton: false,
+          timer: 1500
+        }).then(() => {
+          window.location.reload()
+        })
 
 
       },

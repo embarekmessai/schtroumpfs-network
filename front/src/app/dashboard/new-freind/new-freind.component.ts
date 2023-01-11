@@ -3,6 +3,7 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { DashboardService } from '../dashboard.service';
 import { FormBuilder } from '@angular/forms';
 import { AuthService } from '../../auth/auth.service';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -65,13 +66,26 @@ export class NewFreindComponent implements OnInit {
   // Submit freind information
   onSubmit() {
     this.dashboardService.addFreind(this.freindForm.value).subscribe(
-      result => {
-        this.freindForm.patchValue({freindId : ''})
-        window.location.reload();
+      (res: any) => {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: res.message,
+          showConfirmButton: false,
+          timer: 1500
+        }).then(() => {
+          this.freindForm.patchValue({freindId : ''})
+          window.location.reload();
+
+        })
+
       },
       err => {
-        console.log(err);
-
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: err.error.message,
+        })
         this.errorMessage = err.error.message;
 
       }

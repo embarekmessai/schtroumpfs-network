@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SmurfsService } from '../smurfs.service';
 import { AuthService } from '../../auth/auth.service';
 import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-freinds',
@@ -43,10 +44,16 @@ export class FreindsComponent implements OnInit {
   deleteFreind(freindId : any) {
     const data = {freindId: freindId}
     return this.smurfsService.deleteFreind(data).subscribe(
-      res => {
-        window.location.reload()
-        console.log(res);
-
+      (res: any) => {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: res.message,
+          showConfirmButton: false,
+          timer: 1500
+        }).then(() => {
+          window.location.reload()
+        })
 
       },
       err => {

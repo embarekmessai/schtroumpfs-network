@@ -5,6 +5,7 @@ import { AuthService } from '../auth/auth.service';
 import { Router } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 import { UserProfile } from '../types/user';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-profile',
@@ -55,18 +56,31 @@ export class ProfileComponent implements OnInit {
   // Update profile datas
   onSubmit() {
     this.profileService.profileUpdate(this.profileForm.value).subscribe(
-      res => {
-        console.log(res);
-        this.hideModal();
-        this.profileForm.patchValue({
-          old_password: '',
-          password: '',
-          password_conformation: '',
+      (res: any) => {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: res.message,
+          showConfirmButton: false,
+          timer: 1500
+        }).then(() => {
+          this.hideModal();
+          this.profileForm.patchValue({
+            old_password: '',
+            password: '',
+            password_conformation: '',
+          })
+          window.location.reload();
+
         })
-        window.location.reload();
+
       },
       err => {
-        console.log(err.error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: err.error.message,
+        })
         this.errorMessage = err.error.message
       }
     )
