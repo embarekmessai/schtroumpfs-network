@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
 import { SmurfsComponent } from '../smurfs/smurfs.component';
+import { FreindsComponent } from '../smurfs/freinds/freinds.component';
 
 const routes: Routes = [
   {
@@ -19,11 +20,21 @@ const routes: Routes = [
     component: SmurfsComponent,
     children: [
       {
-        path: 'smurfs',
+        path: '',
         component: SmurfsComponent
-      }
+      },
     ]
   },
+  {
+    path: 'freinds',
+    component: FreindsComponent,
+    children: [
+      {
+        path: '',
+        component: FreindsComponent
+      },
+    ]
+  }
 ];
 
 @NgModule({

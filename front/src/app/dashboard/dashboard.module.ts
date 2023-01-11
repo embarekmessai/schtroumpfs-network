@@ -7,6 +7,7 @@ import { NewFreindComponent } from './new-freind/new-freind.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SmurfsComponent } from '../smurfs/smurfs.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FreindsComponent } from '../smurfs/freinds/freinds.component';
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     DashboardComponent,
     NewFreindComponent,
     SmurfsComponent,
+    FreindsComponent
   ],
   imports: [
     CommonModule,
