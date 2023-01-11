@@ -14,12 +14,14 @@
       <div class="flex justify-center mx-5 my-2">
         <button type="button" class="px-5 text-white text-center uppercase font-bold rounded bg-red-600 active:bg-red-700 active:shadow-md"
               *ngIf="smurf.isFreind"
-        >
-          <fa-icon [icon]="faTimes"></fa-icon>
-          Supprimer
+              (click)="deleteFreind(smurf._id)"
+              >
+              <fa-icon [icon]="faTimes"></fa-icon>
+              Supprimer
         </button>
         <button type="button" class="px-5 text-white text-center uppercase font-bold rounded bg-appGreen-100 active:bg-appGreen-200 active:shadow-md"
-              *ngIf="!smurf.isFreind"
+            *ngIf="!smurf.isFreind"
+            (click)="addFreind(smurf._id)"
         >
           <fa-icon [icon]="faCheck"></fa-icon>
           Ajouter
