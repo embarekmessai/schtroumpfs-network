@@ -21,7 +21,7 @@ router.post('/roles', auth, async(req, res)=>{
 
         await newRole.save();
 
-        res.status(201).json('Le role a été créé avec succès!');
+        res.status(201).json({massage : "Le role a été créé avec succès!"});
         
     } catch (error) {
         const status = error.status || 500;

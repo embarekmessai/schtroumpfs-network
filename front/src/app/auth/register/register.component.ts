@@ -30,7 +30,6 @@ export class RegisterComponent {
 
     this.authService.register(this.registerForm.value).subscribe(
       data => {
-        console.log(data);
         this.isSuccessful = true;
         this.isRegistredFailed = false;
 
@@ -44,7 +43,7 @@ export class RegisterComponent {
       },
 
       err => {
-        this.errorMessage = err.error;
+        this.errorMessage = err.error.message;
         this.isRegistredFailed = true;
       }
     )

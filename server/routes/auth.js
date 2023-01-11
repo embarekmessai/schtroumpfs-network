@@ -49,12 +49,12 @@ router.post('/login', async(req, res) => {
 
         // IF Credentials wrongs
         if(!user){
-            return res.status(403).json("Votre nom d'utlisateur n'est pas enregitré");
+            return res.status(403).json({massage : "Votre nom d'utlisateur n'est pas enregitré"});
         } 
         
         // Avoid null password
         if(!req.body.password){
-            return res.status(403).json("Vous devez saisir un mot de passe");
+            return res.status(403).json({massage : "Vous devez saisir un mot de passe"});
 
         }
 
@@ -71,7 +71,7 @@ router.post('/login', async(req, res) => {
 
          
         if(originalPassword != inputPassword) {
-            return res.status(403).json("Mot de passe n'est pas correcte");
+            return res.status(403).json({massage : "Mot de passe n'est pas correcte"});
         }
         
         // Define access Token
@@ -102,7 +102,7 @@ router.post('/login', async(req, res) => {
 // Logout route
 router.post('/logout', auth, async(req, res) => {
 
-    res.status(200).json("Vous êtes déconnecté!");
+    res.status(200).json({massage : "Vous êtes déconnecté!"});
     
     // Change user token
     const user = await User.findById(req.user.id)
