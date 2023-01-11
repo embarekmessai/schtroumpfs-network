@@ -37,8 +37,10 @@ export class RegisterComponent {
         // Save user in session
         window.sessionStorage.setItem(this.authService.user_key, JSON.stringify(data));
 
-        // redirect after connexion
-        this.router.navigate(['/dashboard'])
+        setTimeout(() => {
+          // redirect after connexion
+          this.router.navigate(['/dashboard'])
+        }, 500);
       },
 
       err => {
