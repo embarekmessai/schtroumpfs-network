@@ -7,6 +7,7 @@ const schtroumpfRouter = require('./routes/users')
 const profileRouter = require('./routes/profile')
 const dashboardRouter = require('./routes/dashboard')
 const freindsRouter = require('./routes/freinds')
+const smurfsRouter = require('./routes/smurfs')
 
 var cookieParser = require('cookie-parser')
 const cors = require('cors')
@@ -38,6 +39,7 @@ app.use('/api/v1/schtroumpfs', schtroumpfRouter); // Get all users route
 app.use('/api/v1/profile', profileRouter); // Profile routes
 app.use('/api/v1/dashboard', dashboardRouter); // Dashboard routes
 app.use('/api/v1/freinds', freindsRouter); // Freinds routes
+app.use('/api/v1/smurfs', smurfsRouter); // Smurfs routes
 
 // Server initiation
 app.listen(process.env.PORT || 5000, () => {
