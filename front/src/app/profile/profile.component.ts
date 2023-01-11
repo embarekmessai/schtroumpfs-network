@@ -52,7 +52,7 @@ export class ProfileComponent implements OnInit {
 
         }
       );
-    }, 2000)
+    }, 5000)
   }
 
   // Update profile datas
