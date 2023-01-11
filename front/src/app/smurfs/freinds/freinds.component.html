@@ -1,0 +1,24 @@
+<section>
+  <div
+    class="relative grid grid-cols-1 md:grid-cols-4 gap-4 mx-12 my-5 px-2 md:px-5 z-50
+          overflow-y-scroll scrollbar-thin h-96 scrollbar-thumb-gray-500 scrollbar-track-gray-100 scrollbar-thumb-rounded">
+
+    <!-- Smurf card -->
+    <div class="flex flex-col justify-center items-center p-2 rounded shadow bg-white h-44"
+      *ngFor="let smurf of freinds_smurfs">
+      <div class="w-24 px-2">
+        <img class="rounded-full" [src]="smurf.role?.avatar ?? '../../assets/images/avatar/avatar.jpg'" alt="">
+      </div>
+      <h4 class="text-lg font-bold text-blueGray-600 text-center uppercase">{{ smurf.username }}</h4>
+      <h6 class="text-sm text-blueGray-600 text-center uppercase">{{ smurf.fullname }}</h6>
+      <div class="flex justify-center mx-5 my-2">
+        <button type="button"
+          class="px-5 text-white text-center uppercase font-bold rounded bg-red-600 active:bg-red-700 active:shadow-md"
+          (click)="deleteFreind(smurf._id)">
+          <fa-icon [icon]="faTimes"></fa-icon>
+          Supprimer
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
