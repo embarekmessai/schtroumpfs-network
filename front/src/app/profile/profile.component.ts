@@ -24,33 +24,35 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     console.log('profile init');
 
+    setTimeout(() => {
 
-    // Get profile datas
-    this.profileService.getProfile().subscribe(
-      res => {
-        console.log(res);
-        // Get profile information
-        this.profileRoles = res?.roles;
+      // Get profile datas
+      this.profileService.getProfile().subscribe(
+        res => {
+          console.log(res);
+          // Get profile information
+          this.profileRoles = res?.roles;
 
-        // Push profile datas to form
-        this.profileForm.patchValue({
-          username: res?.user.username,
-          fullname: res?.user.fullname,
-          role: res?.user.role?.name,
-          image: res?.user.role?.image,
-          avatar: res?.user.role?.avatar,
-        })
+          // Push profile datas to form
+          this.profileForm.patchValue({
+            username: res?.user.username,
+            fullname: res?.user.fullname,
+            role: res?.user.role?.name,
+            image: res?.user.role?.image,
+            avatar: res?.user.role?.avatar,
+          })
 
-        // Get profile image
-          this.profileImage = res?.user.role?.image
-      },
-      err => {
-        window.sessionStorage.removeItem(this.authService.user_key);
-        this.router.navigate(['/auth/login'])
-        console.log(err);
+          // Get profile image
+            this.profileImage = res?.user.role?.image
+        },
+        err => {
+          window.sessionStorage.removeItem(this.authService.user_key);
+          this.router.navigate(['/auth/login'])
+          console.log(err);
 
-      }
-    );
+        }
+      );
+    }, 2000)
   }
 
   // Update profile datas
