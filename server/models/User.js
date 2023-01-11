@@ -9,7 +9,8 @@ const userSchema = new mongoose.Schema({
     freinds:[{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
-    }]
+    }],
+    isFreind: {type: Boolean, default: false}
 }, { timestamps: true })
 
 module.exports = mongoose.model("User", userSchema);
